@@ -41,7 +41,7 @@ export const DATA = {
     {
       customerId: 1,
       date: "06-12-2024",
-      sales: 5000,
+      sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
@@ -125,7 +125,7 @@ export const DATA = {
     {
       customerId: 2,
       date: "06-12-2024",
-      sales: 4000,
+      sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
@@ -179,7 +179,7 @@ export const DATA = {
     {
       customerId: 3,
       date: "06-12-2024",
-      sales: 260000,
+      sales: 150000,
       salesChannel: SalesChannel.ONLINE
     },
     {

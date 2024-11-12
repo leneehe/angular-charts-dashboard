@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ChartDataValue } from 'src/app/services/dashboard-data-interface';
 import { sum } from 'lodash';
 import { CurrencyPipe } from '@angular/common';
-import { Chart, ChartConfiguration, ChartType } from 'chart.js';
+import { Chart, ChartConfiguration, ChartType, TooltipItem } from 'chart.js';
 import zoomPlugin from 'chartjs-plugin-zoom';
+import { BaseChartDirective } from 'ng2-charts';
 
 Chart.register(zoomPlugin);
 
@@ -15,7 +16,7 @@ Chart.register(zoomPlugin);
   providers: [CurrencyPipe]
 })
 export class TotalSalesCardComponent implements OnInit {
-
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   @Input() public chartData: SalesChartData | null = null;
 
   private allCustomersSalesTotal: number = 0;
@@ -46,6 +47,7 @@ export class TotalSalesCardComponent implements OnInit {
       }
     },
     plugins: {
+      legend: { display: false },
       zoom: {
         pan: {
           enabled: true,
@@ -60,13 +62,32 @@ export class TotalSalesCardComponent implements OnInit {
           },
           mode: 'x' // Enable zooming in the x direction
         }
-      }
+      },
+      tooltip: {
+        callbacks: {
+          label(tooltipItem: TooltipItem<'line'>): string | string[] {
+            let label = tooltipItem.dataset.label || '';
+
+            if (label) {
+              label += ': $';
+              const value = tooltipItem.raw as number;
+              label += Math.round(value * 100) / 100;
+            }
+
+            return label.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          },
+        },
+      },
     }
   };
 
   ngOnInit(): void {
     this.setMetrics();
     this.setChartData();
+  }
+
+  ngAfterViewInit(): void {
+    this.generateCustomLegend();
   }
 
   private setMetrics(): void {
@@ -103,6 +124,51 @@ export class TotalSalesCardComponent implements OnInit {
         labels,
         datasets: [allCustomersDataset, loyaltyCustomersDataset],
     }
+  }
+
+  private generateCustomLegend(): void {
+    const chartLegendDiv1 = document.getElementById('chart-legend-all-customers');
+    if (chartLegendDiv1 && this.chartConfigData.datasets) {
+      const dataset1 = this.chartConfigData.datasets[0]
+      const legendHtml1 = `
+        <div class="d-flex align-items-center" style="cursor: pointer">
+          <span class="legend-color" style="background-color:${dataset1.borderColor}; width: 12px; height: 12px; display: inline-block; margin-right: 8px;"></span>
+          <span class="text-muted">${dataset1.label}</span>
+        </div>`;
+      chartLegendDiv1.innerHTML = legendHtml1;
+      chartLegendDiv1.addEventListener('click', (event) => {
+        this.toggleDatasetVisibility(0);
+      });
+    }
+
+    const chartLegendDiv2 = document.getElementById('chart-legend-loyalty-customers');
+    if (chartLegendDiv2 && this.chartConfigData.datasets) {
+      const dataset2 = this.chartConfigData.datasets[1]
+      const legendHtml2 = `
+        <div class="d-flex align-items-center" style="cursor: pointer">
+          <span class="legend-color" style="background-color:${dataset2.borderColor}; width: 12px; height: 12px; display: inline-block; margin-right: 8px;"></span>
+          <span class="text-muted">${dataset2.label}</span>
+        </div>`;
+      chartLegendDiv2.innerHTML = legendHtml2;
+      chartLegendDiv2.addEventListener('click', (event) => {
+        this.toggleDatasetVisibility(1);
+      });
+    }
+  }
+
+  private toggleDatasetVisibility(index: number): void {
+    // Toggle the hidden property of the dataset
+    const dataset = this.chartConfigData.datasets[index];
+    dataset.hidden = !dataset.hidden;
+
+    // Update legend item style
+    const legendText = document.querySelectorAll('.chart-legend .text-muted')[index];
+    const legendColor = document.querySelectorAll('.chart-legend .legend-color')[index];
+    legendText.classList.toggle('text-decoration-line-through', dataset.hidden);
+    legendColor.classList.toggle('bg-white', dataset.hidden)
+
+    // Update the chart to reflect the change
+    this.chart?.update();
   }
 }
 
