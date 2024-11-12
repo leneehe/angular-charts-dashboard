@@ -4,211 +4,211 @@ export const DATA = {
   sales: [
     {
       customerId: 1,
-      date: "06-01-2023",
+      date: "06-01-2024",
       sales: 5000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-01-2023",
+      date: "06-01-2024",
       sales: 6000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-03-2023",
+      date: "06-03-2024",
       sales: 2000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-03-2023",
+      date: "06-03-2024",
       sales: 5000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-09-2023",
+      date: "06-09-2024",
       sales: 5000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-09-2023",
+      date: "06-09-2024",
       sales: 10000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-12-2023",
+      date: "06-12-2024",
       sales: 5000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-18-2023",
+      date: "06-18-2024",
       sales: 3000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-18-2023",
+      date: "06-18-2024",
       sales: 7000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-21-2023",
+      date: "06-21-2024",
       sales: 7000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-21-2023",
+      date: "06-21-2024",
       sales: 7000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-26-2023",
+      date: "06-26-2024",
       sales: 5000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-26-2023",
+      date: "06-26-2024",
       sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-28-2023",
+      date: "06-28-2024",
       sales: 2000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-28-2023",
+      date: "06-28-2024",
       sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 1,
-      date: "06-31-2023",
+      date: "06-31-2024",
       sales: 5500,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 1,
-      date: "06-31-2023",
+      date: "06-31-2024",
       sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 2,
-      date: "06-01-2023",
+      date: "06-01-2024",
       sales: 9000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 2,
-      date: "06-03-2023",
+      date: "06-03-2024",
       sales: 3000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 2,
-      date: "06-09-2023",
+      date: "06-09-2024",
       sales: 8000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 2,
-      date: "06-12-2023",
+      date: "06-12-2024",
       sales: 4000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 2,
-      date: "06-18-2023",
+      date: "06-18-2024",
       sales: 5000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 2,
-      date: "06-21-2023",
+      date: "06-21-2024",
       sales: 9000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 2,
-      date: "06-26-2023",
+      date: "06-26-2024",
       sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 2,
-      date: "06-28-2023",
+      date: "06-28-2024",
       sales: 11000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 2,
-      date: "06-31-2023",
+      date: "06-31-2024",
       sales: 210500,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 3,
-      date: "06-01-2023",
+      date: "06-01-2024",
       sales: 20000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 3,
-      date: "06-03-2023",
+      date: "06-03-2024",
       sales: 11000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 3,
-      date: "06-09-2023",
+      date: "06-09-2024",
       sales: 15000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 3,
-      date: "06-12-2023",
+      date: "06-12-2024",
       sales: 260000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 3,
-      date: "06-18-2023",
+      date: "06-18-2024",
       sales: 15000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 3,
-      date: "06-21-2023",
+      date: "06-21-2024",
       sales: 25000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 3,
-      date: "06-26-2023",
+      date: "06-26-2024",
       sales: 37000,
       salesChannel: SalesChannel.IN_STORE
     },
     {
       customerId: 3,
-      date: "06-28-2023",
+      date: "06-28-2024",
       sales: 32000,
       salesChannel: SalesChannel.ONLINE
     },
     {
       customerId: 3,
-      date: "06-31-2023",
+      date: "06-31-2024",
       sales: 36500,
       salesChannel: SalesChannel.ONLINE
     }

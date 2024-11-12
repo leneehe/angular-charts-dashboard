@@ -1,0 +1,31 @@
+<mat-card class="my-3">
+  <mat-card-header>
+    <mat-card-title>Total Sales</mat-card-title>
+    <mat-card-subtitle *ngIf="period">Looking at period {{period}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div *ngIf="!!chartData; else showNoData">
+      <div class="d-flex flex-row pt-3 px-3">
+        <div class="col-5">
+          <h3>{{ formattedAllCustomers }}</h3>
+          <div class="text-muted">All Customers</div>
+        </div>
+        <div class="col-5">
+          <h3>{{ formattedLoyaltyCustomers }}</h3>
+          <div class="text-muted">Loyalty Customers</div>
+        </div>
+      </div>
+      <div class="chart w-100">
+        <canvas baseChart
+                [data]="chartConfigData"
+                [type]="chartType"
+                [options]="chartOptions"
+        ></canvas>
+      </div>
+    </div>
+    <ng-template #showNoData>
+      <p class="text-center pt-4">No data available</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

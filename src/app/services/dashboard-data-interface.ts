@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export enum SalesChannel {
   IN_STORE = "In-store",
   ONLINE = "Online",
@@ -20,4 +22,9 @@ export interface Ticket {
   customerId: number; //1,
   date: string; //"05-01-2024",
   size: number; //27.01
+}
+
+export interface ChartDataValue {
+  date: Moment;
+  value: number;
 }
