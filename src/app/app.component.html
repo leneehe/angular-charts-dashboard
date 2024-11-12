@@ -1,10 +1,16 @@
 <div id="home" class="d-flex justify-content-center">
-  <div class="w-75">
+  <div class="col-lg-11 col-xl-10">
     <h3>Welcome to dashboard!</h3>
-    <app-total-sales-card [chartData]="salesChartData" [control]="salesDateRangeControl" (dateRangeChanged)="onDateRangeChanged($event)"></app-total-sales-card>
-
-    <app-sales-channel-card [chartData]="salesChannelChartData"></app-sales-channel-card>
-
-    <app-tickets-average-card [chartData]="ticketsChartData"></app-tickets-average-card>
+    <div class="d-flex flex-wrap gap-3 mt-4">
+      <div class="daashboard-card  col-lg-12 col-xl-5">
+        <app-total-sales-card [chartData]="salesChartData" [control]="salesDateRangeControl" (dateRangeChanged)="onDateRangeChanged($event)"></app-total-sales-card>
+      </div>
+      <div class="daashboard-card  col-lg-12 col-xl-5">
+        <app-sales-channel-card [chartData]="salesChannelChartData"></app-sales-channel-card>
+      </div>
+      <div class="daashboard-card  col-lg-12 col-xl-5">
+        <app-tickets-average-card [chartData]="ticketsChartData"></app-tickets-average-card>
+      </div>
+    </div>
   </div>
 </div>
