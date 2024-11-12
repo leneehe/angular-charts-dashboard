@@ -31,7 +31,7 @@ export class TotalSalesCardComponent implements OnInit {
   public formattedAllCustomers: string = "";
   public formattedLoyaltyCustomers: string = "";
 
-  public period: string|null = null;
+  public period: string | null = null;
 
   public chartType: ChartType = 'line';
   public chartConfigData: ChartConfiguration['data'] = {labels: [], datasets: []}
@@ -57,7 +57,7 @@ export class TotalSalesCardComponent implements OnInit {
       zoom: {
         pan: {
           enabled: true,
-          mode: 'x', // Enable panning in the x direction
+          mode: 'xy', // Enable panning in the xy direction
         },
         zoom: {
           wheel: {
@@ -66,7 +66,7 @@ export class TotalSalesCardComponent implements OnInit {
           pinch: {
             enabled: true // Enable zooming with pinch gestures on touch devices
           },
-          mode: 'x' // Enable zooming in the x direction
+          mode: 'xy' // Enable zooming in the xy direction
         }
       },
       tooltip: {
@@ -177,8 +177,8 @@ export class TotalSalesCardComponent implements OnInit {
     dataset.hidden = !dataset.hidden;
 
     // Update legend item style
-    const legendText = document.querySelectorAll('.chart-legend .text-muted')[index];
-    const legendColor = document.querySelectorAll('.chart-legend .legend-color')[index];
+    const legendText = document.querySelectorAll('.area-chart-legend .text-muted')[index];
+    const legendColor = document.querySelectorAll('.area-chart-legend .legend-color')[index];
     legendText.classList.toggle('text-decoration-line-through', dataset.hidden);
     legendColor.classList.toggle('bg-white', dataset.hidden)
 

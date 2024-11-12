@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { forkJoin } from 'rxjs';
-import {ChartDataValue, Customer, DateRangeOptions, Sales } from './services/dashboard-data-interface';
+import {ChartDataValue, Customer, DateRangeOptions, Sales, SalesChannel } from './services/dashboard-data-interface';
 import { DashboardDataService } from './services/dashboard-data.service';
 import { uniq } from 'lodash';
 import * as moment from 'moment';
 import { SalesChartData } from './components/total-sales-card/total-sales-card.component';
 import { FormControl } from '@angular/forms';
+import { SalesChannelChartData } from './components/sales-channel-card/sales-channel-card.component';
 
 @UntilDestroy()
 @Component({
@@ -18,7 +19,7 @@ export class AppComponent {
   constructor(private service: DashboardDataService ) {}
 
   public salesChartData: SalesChartData | null = null;
-  public salesChannelChartData: any;
+  public salesChannelChartData: SalesChannelChartData | null = null;
   public ticketsChartData: any;
 
   public salesDateRangeControl = new FormControl(DateRangeOptions[0].value);
@@ -39,6 +40,8 @@ export class AppComponent {
       this.customersData = customersData;
       this.salesData = salesData;
       this.salesChartData = this.setSalesChartData(customersData, salesData);
+
+      this.salesChannelChartData = this.setSalesChannelChartData(salesData)
     })
   }
 
@@ -89,5 +92,18 @@ export class AppComponent {
     })
 
     return { allCustomers: allCustomersSales, loyaltyCustomers: loyaltyCustomersSales }
+  }
+
+  private setSalesChannelChartData(salesData: Sales[]): SalesChannelChartData {
+    const inStoreSalesData = salesData.filter((sales) => sales.salesChannel === SalesChannel.IN_STORE && moment.utc(sales.date).year() === 2024 && moment.utc(sales.date).month() === 5); // June is month 5 (0-indexed)
+    const onlineSalesData = salesData.filter((sales) => sales.salesChannel === SalesChannel.ONLINE && moment.utc(sales.date).year() === 2024 && moment.utc(sales.date).month() === 5); // June is month 5 (0-indexed)
+
+    const inStoreSalesTotal = inStoreSalesData.reduce((total, sales) => total + sales.sales, 0)
+    const onlineSalesTotal = onlineSalesData.reduce((total, sales) => total + sales.sales, 0)
+
+    const allDates = uniq(inStoreSalesData.map((sales) => sales.date))
+    const period = moment.utc(allDates[0]).format('MMMM D') + ' - ' + moment.utc(allDates[allDates.length - 1]).format('LL')
+
+    return {inStore: inStoreSalesTotal, online: onlineSalesTotal, period}
   }
 }

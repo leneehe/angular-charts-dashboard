@@ -10,12 +10,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
-import { TotalSalesCardComponent } from './components/total-sales-card/total-sales-card.component'
+import { TotalSalesCardComponent } from './components/total-sales-card/total-sales-card.component';
+import { SalesChannelCardComponent } from './components/sales-channel-card/sales-channel-card.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    TotalSalesCardComponent
+    TotalSalesCardComponent,
+    SalesChannelCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+<mat-card class="mb-3">
+  <mat-card-title-group>
+    <mat-card-title>Sales Channel Breakdown</mat-card-title>
+    <mat-card-subtitle *ngIf="chartData?.period">Looking at period {{chartData?.period}}</mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div *ngIf="!!chartData; else showNoData">
+      <div class="d-flex flex-row p-3">
+        <div class="col-5">
+          <h3>{{ formattedOnlineTotal }}</h3>
+          <div id="chart-legend-instore" class="bar-chart-legend"></div>
+        </div>
+        <div class="col-5">
+          <h3>{{ formattedInStoreTotal }}</h3>
+          <div id="chart-legend-online" class="bar-chart-legend"></div>
+        </div>
+      </div>
+      <div class="chart w-100">
+        <canvas baseChart
+                [data]="chartConfigData"
+                [type]="chartType"
+                [options]="chartOptions"
+        ></canvas>
+      </div>
+    </div>
+    <ng-template #showNoData>
+      <p class="text-center pt-4">No data available</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

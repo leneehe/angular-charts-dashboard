@@ -3,7 +3,8 @@
     <h3>Welcome to dashboard!</h3>
     <app-total-sales-card [chartData]="salesChartData" [control]="salesDateRangeControl" (dateRangeChanged)="onDateRangeChanged($event)"></app-total-sales-card>
 
-    <mat-card class="mb-3">Bar Chart</mat-card>
+    <app-sales-channel-card [chartData]="salesChannelChartData"></app-sales-channel-card>
+
     <mat-card>Line Chart</mat-card>
   </div>
 </div>
