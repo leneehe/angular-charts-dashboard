@@ -28,3 +28,18 @@ export interface ChartDataValue {
   date: Moment;
   value: number;
 }
+
+export const DateRangeOptions = [
+  {
+    text: "Last Month",
+    value: "last_month"
+  },
+  {
+    text: "Last Quarter",
+    value: "last_quarter"
+  },
+  {
+    text: "Last Year",
+    value: "last_year"
+  },
+]

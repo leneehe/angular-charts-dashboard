@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ChartDataValue } from 'src/app/services/dashboard-data-interface';
+import { ChangeDetectionStrategy, Component, Input, OnInit, AfterViewInit, OnChanges, ViewChild, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { ChartDataValue, DateRangeOptions } from 'src/app/services/dashboard-data-interface';
 import { sum } from 'lodash';
 import { CurrencyPipe } from '@angular/common';
 import { Chart, ChartConfiguration, ChartType, TooltipItem } from 'chart.js';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import { BaseChartDirective } from 'ng2-charts';
+import { FormControl } from '@angular/forms';
 
 Chart.register(zoomPlugin);
 
@@ -16,16 +17,21 @@ Chart.register(zoomPlugin);
   providers: [CurrencyPipe]
 })
 export class TotalSalesCardComponent implements OnInit {
+  public dateRangeOptions = DateRangeOptions;
+
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   @Input() public chartData: SalesChartData | null = null;
+  @Input() public control: FormControl = new FormControl(this.dateRangeOptions[0].value);
+  @Output() public dateRangeChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor(private currencyPipe: CurrencyPipe) {}
 
   private allCustomersSalesTotal: number = 0;
   private loyaltyCustomersSalesTotal: number = 0;
   public formattedAllCustomers: string = "";
   public formattedLoyaltyCustomers: string = "";
-  public period: string|null = null;
 
-  constructor(private currencyPipe: CurrencyPipe) {}
+  public period: string|null = null;
 
   public chartType: ChartType = 'line';
   public chartConfigData: ChartConfiguration['data'] = {labels: [], datasets: []}
@@ -84,10 +90,19 @@ export class TotalSalesCardComponent implements OnInit {
   ngOnInit(): void {
     this.setMetrics();
     this.setChartData();
+
+    this.control.valueChanges.subscribe((value) => this.dateRangeChanged.emit(value))
   }
 
   ngAfterViewInit(): void {
     this.generateCustomLegend();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['chartData']) {
+      this.setMetrics();
+      this.setChartData();
+    }
   }
 
   private setMetrics(): void {

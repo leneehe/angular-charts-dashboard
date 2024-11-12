@@ -2,6 +2,183 @@ import { SalesChannel } from "../services/dashboard-data-interface";
 
 export const DATA = {
   sales: [
+    // last year data
+    {
+      customerId: 1,
+      date: "03-01-2023",
+      sales: 7500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "04-01-2023",
+      sales: 1500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "05-01-2023",
+      sales: 5500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "06-01-2023",
+      sales: 15000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "07-01-2023",
+      sales: 9000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "08-01-2023",
+      sales: 7000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "09-01-2023",
+      sales: 13000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "10-01-2023",
+      sales: 6000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "11-01-2023",
+      sales: 4000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "12-01-2023",
+      sales: 19700,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "03-01-2023",
+      sales: 3500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "04-01-2023",
+      sales: 2500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "05-01-2023",
+      sales: 1500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "06-01-2023",
+      sales: 6000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "07-01-2023",
+      sales: 4500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "08-01-2023",
+      sales: 2000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "09-01-2023",
+      sales: 8000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "10-01-2023",
+      sales: 6000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "11-01-2023",
+      sales: 1500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "12-01-2023",
+      sales: 13000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    // this year, last quarter data
+    {
+      customerId: 1,
+      date: "04-01-2024",
+      sales: 3500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "05-01-2024",
+      sales: 2500,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 1,
+      date: "05-28-2024",
+      sales: 12300,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 2,
+      date: "04-01-2024",
+      sales: 3100,
+      salesChannel: SalesChannel.ONLINE
+    },
+    {
+      customerId: 2,
+      date: "05-01-2024",
+      sales: 3500,
+      salesChannel: SalesChannel.ONLINE
+    },
+    {
+      customerId: 2,
+      date: "05-28-2024",
+      sales: 5300,
+      salesChannel: SalesChannel.ONLINE
+    },
+    {
+      customerId: 3,
+      date: "04-01-2024",
+      sales: 3400,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "05-01-2024",
+      sales: 5000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    {
+      customerId: 3,
+      date: "05-28-2024",
+      sales: 7000,
+      salesChannel: SalesChannel.IN_STORE
+    },
+    // this year, last month data
     {
       customerId: 1,
       date: "06-01-2024",
