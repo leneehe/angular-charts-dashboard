@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { forkJoin } from 'rxjs';
-import {ChartDataValue, Customer, DateRangeOptions, Sales, SalesChannel } from './services/dashboard-data-interface';
+import {ChartDataValue, Customer, DateRangeOptions, Sales, SalesChannel, Ticket } from './services/dashboard-data-interface';
 import { DashboardDataService } from './services/dashboard-data.service';
-import { uniq } from 'lodash';
+import { uniq, mean } from 'lodash';
 import * as moment from 'moment';
 import { SalesChartData } from './components/total-sales-card/total-sales-card.component';
 import { FormControl } from '@angular/forms';
 import { SalesChannelChartData } from './components/sales-channel-card/sales-channel-card.component';
+import { TicketsChartData } from './components/tickets-average-card/tickets-average-card.component';
 
 @UntilDestroy()
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent {
 
   public salesChartData: SalesChartData | null = null;
   public salesChannelChartData: SalesChannelChartData | null = null;
-  public ticketsChartData: any;
+  public ticketsChartData: TicketsChartData | null = null;
 
   public salesDateRangeControl = new FormControl(DateRangeOptions[0].value);
   private customersData: Customer[] = [];
@@ -36,12 +37,13 @@ export class AppComponent {
       this.service.getSalesData(),
       this.service.getTicketsData(),
     ]).pipe(untilDestroyed(this)).subscribe(([customersData, salesData, ticketsData]) => {
-      console.log(customersData, salesData, ticketsData)
       this.customersData = customersData;
       this.salesData = salesData;
       this.salesChartData = this.setSalesChartData(customersData, salesData);
-
       this.salesChannelChartData = this.setSalesChannelChartData(salesData)
+
+      console.log(ticketsData)
+      this.ticketsChartData = this.setTicketsChartData(customersData, ticketsData);
     })
   }
 
@@ -105,5 +107,46 @@ export class AppComponent {
     const period = moment.utc(allDates[0]).format('MMMM D') + ' - ' + moment.utc(allDates[allDates.length - 1]).format('LL')
 
     return {inStore: inStoreSalesTotal, online: onlineSalesTotal, period}
+  }
+
+  private setTicketsChartData(customerData: Customer[], ticketsData: Ticket[]):TicketsChartData {
+    let avgTicektsAllCustomers: ChartDataValue[] = [];
+    let avgTicketsLoyaltyCustomers: ChartDataValue[] = [];
+    const uniqDates =  uniq(ticketsData.map((ticket) => ticket.date));
+
+    uniqDates.forEach((date) => {
+      const dailyTicketAvg = mean(ticketsData.filter((ticket) => ticket.date === date).map((ticket) => ticket.size))
+      const loyaltyCustomersDailyAvg = mean(ticketsData.filter((ticket) => ticket.date === date && customerData.find((customer) => customer.id === ticket.customerId)?.isLoyaltyCustomer).map((ticket) => ticket.size))
+
+      if (!!dailyTicketAvg) {
+        avgTicektsAllCustomers.push({
+          date: moment.utc(date),
+          value: dailyTicketAvg
+        })
+      }
+
+      if (!!avgTicketsLoyaltyCustomers) {
+        avgTicketsLoyaltyCustomers.push({
+          date: moment.utc(date),
+          value: loyaltyCustomersDailyAvg
+        })
+      }
+    })
+
+    let avgTicketsPerCustomer = new Map<string, ChartDataValue[]>()
+    customerData.forEach((customer) => {
+      const data = ticketsData.filter((ticket) => ticket.customerId === customer.id).map((ticket) => {
+        return {
+          date: moment.utc(ticket.date),
+          value: ticket.size
+        }
+      })
+      avgTicketsPerCustomer.set(customer.name, data)
+    })
+    
+    const customers = customerData.map((customer) => customer.name)
+    console.log(avgTicketsPerCustomer)
+
+    return {allCustomers: avgTicektsAllCustomers, loyaltyCustomers: avgTicketsLoyaltyCustomers, avgTicketsPerCustomer, customers}
   }
 }

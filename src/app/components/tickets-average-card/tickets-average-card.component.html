@@ -1,19 +1,19 @@
 <mat-card class="mb-4">
   <mat-card-title-group>
-    <mat-card-title>Sales Channel Breakdown</mat-card-title>
-    <mat-card-subtitle *ngIf="chartData?.period">Looking at period {{chartData?.period}}</mat-card-subtitle>
+    <mat-card-title>Average ticket size</mat-card-title>
+    <mat-card-subtitle *ngIf="period">Looking at period {{period}}</mat-card-subtitle>
   </mat-card-title-group>
   <mat-divider></mat-divider>
   <mat-card-content>
     <div *ngIf="!!chartData; else showNoData">
       <div class="d-flex flex-row p-3">
         <div class="col-5">
-          <h3>{{ formattedOnlineTotal }}</h3>
-          <div id="chart-legend-instore" class="bar-chart-legend"></div>
+          <h3>{{ formattedAllCustomers }}</h3>
+          <div id="ticket-chart-legend-all-customers" class="mixed-chart-legend"></div>
         </div>
         <div class="col-5">
-          <h3>{{ formattedInStoreTotal }}</h3>
-          <div id="chart-legend-online" class="bar-chart-legend"></div>
+          <h3>{{ formattedLoyaltyCustomers }}</h3>
+          <div id="ticket-chart-legend-loyalty-customers" class="mixed-chart-legend"></div>
         </div>
       </div>
       <div class="chart w-100">
