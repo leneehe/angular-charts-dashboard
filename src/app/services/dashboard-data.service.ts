@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { DATA2 } from '../data/mock-data';
+import { DATA } from '../data/mock-data';
 import {Customer, Sales, Ticket } from './dashboard-data-interface';
 
 @Injectable({
@@ -11,14 +11,14 @@ export class DashboardDataService {
   constructor() { }
 
   getSalesData(): Observable<Sales[]> {
-    return of(DATA2.sales)
+    return of(DATA.sales)
   }
 
   getCustomersData(): Observable<Customer[]> {
-    return of(DATA2.customers)
+    return of(DATA.customers)
   }
 
   getTicketsData(): Observable<Ticket[]> {
-    return of(DATA2.tickets)
+    return of(DATA.tickets)
   }
 }
