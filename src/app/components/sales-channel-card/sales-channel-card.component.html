@@ -8,11 +8,11 @@
     <div *ngIf="!!chartData; else showNoData">
       <div class="d-flex flex-row p-3">
         <div class="col-5">
-          <h3>{{ formattedOnlineTotal }}</h3>
+          <h3>{{ formattedInStoreTotal }}</h3>
           <div id="chart-legend-instore" class="bar-chart-legend"></div>
         </div>
         <div class="col-5">
-          <h3>{{ formattedInStoreTotal }}</h3>
+          <h3>{{ formattedOnlineTotal }}</h3>
           <div id="chart-legend-online" class="bar-chart-legend"></div>
         </div>
       </div>

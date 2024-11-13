@@ -527,11 +527,23 @@ export const DATA1 = {
   ],
   tickets: [
     { customerId: 3, date: '01-01-2024', size: 116.12 },
+    { customerId: 2, date: '01-01-2024', size: 77.16 },
+    { customerId: 1, date: '01-01-2024', size: 11.16},
+    { customerId: 3, date: '01-31-2024', size: 88.09},
     { customerId: 2, date: '01-31-2024', size: 63.83 },
+    { customerId: 1, date: '01-31-2024', size: 99.00},
     { customerId: 3, date: '03-01-2024', size: 139.66 },
+    { customerId: 2, date: '03-01-2024', size: 98.98 },
+    { customerId: 3, date: '03-01-2024', size: 102.23 },
+    { customerId: 3, date: '03-31-2024', size: 75.33},
+    { customerId: 2, date: '03-31-2024', size: 42.34},
     { customerId: 1, date: '03-31-2024', size: 75.11 },
-    { customerId: 2, date: '04-30-2024', size: 129.15 },
-    { customerId: 1, date: '05-30-2024', size: 114.77 }
+    { customerId: 3, date: '04-30-2024', size: 109.34 },
+    { customerId: 2, date: '04-30-2024', size: 100.99 },
+    { customerId: 1, date: '04-30-2024', size: 129.15 },
+    { customerId: 3, date: '05-30-2024', size: 11.11 },
+    { customerId: 2, date: '05-30-2024', size: 88.98 },
+    { customerId: 1, date: '05-30-2024', size: 114.77 },
   ],
   customers: [
     {
