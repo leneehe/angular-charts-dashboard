@@ -41,8 +41,6 @@ export class AppComponent {
       this.salesData = salesData;
       this.salesChartData = this.setSalesChartData(customersData, salesData);
       this.salesChannelChartData = this.setSalesChannelChartData(salesData)
-
-      console.log(ticketsData)
       this.ticketsChartData = this.setTicketsChartData(customersData, ticketsData);
     })
   }
@@ -143,9 +141,8 @@ export class AppComponent {
       })
       avgTicketsPerCustomer.set(customer.name, data)
     })
-    
+
     const customers = customerData.map((customer) => customer.name)
-    console.log(avgTicketsPerCustomer)
 
     return {allCustomers: avgTicektsAllCustomers, loyaltyCustomers: avgTicketsLoyaltyCustomers, avgTicketsPerCustomer, customers}
   }
